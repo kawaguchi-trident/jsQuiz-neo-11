@@ -21,6 +21,10 @@ VS Codeのターミナルで進めましょう。
 
 用意済みの `const [weather, setWeather] = useState('sunny');` は消さないでください。
 
+### 完成イメージ
+
+![完成イメージ](./sample.gif)
+
 ## 接続方式（HTTPS / SSH）を確認する
 
 GitHubと通信する方式には **HTTPS** と **SSH** の2種類があり、どちらが使える状態かはPCの設定によって違います。
@@ -82,7 +86,9 @@ git push -u origin quiz11/kawaguchi
 
 ### 6. Pull Requestを作成（ブラウザ）
 
-元のリポジトリに向けてPull Requestを作成してください。
+- ターミナル内にリンクが表示されるので、リンクをクリックする。
+- Pull Request画面が表示されるので、元のリポジトリに向けてPull Requestを作成してください。
+- Webブラウザで行います。
 
 ## 判定について
 
