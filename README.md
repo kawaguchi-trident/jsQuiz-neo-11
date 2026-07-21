@@ -1,7 +1,7 @@
 # jsQuiz-neo-11
 
 React CDN（esm.sh + Babel）で進める、`useState` 入門問題です。
-`students/{番号}/index.html` で、いいねカウンターを完成させます。
+`students/{番号}/index.html` で、天気チェンジを完成させます。
 
 ## JavaScriptクイズNEO ⑪
 
@@ -13,13 +13,13 @@ VS Codeのターミナルで進めましょう。
 
 ## 課題内容
 
-`LikeCounter` コンポーネントの `return null;` を、`useState` で動く JSX に書き換えてください。
+`WeatherSwitcher` コンポーネントの `return null;` を、`useState` で動く JSX に書き換えてください。
 
-- 初期表示：`いいね: 0`
-- `.like-btn` を押すたびに `count` が 1 ずつ増える
-- `.count-label` に `いいね: {count}` を表示
+- 初期表示：`いまの天気: sunny`
+- `.weather-btn` を押すたびに `sunny -> cloudy -> rainy -> sunny` の順で切り替わる
+- `.weather-label` に `いまの天気: {weather}` を表示
 
-用意済みの `const [count, setCount] = useState(0);` は消さないでください。
+用意済みの `const [weather, setWeather] = useState('sunny');` は消さないでください。
 
 ## 接続方式（HTTPS / SSH）を確認する
 

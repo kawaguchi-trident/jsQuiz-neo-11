@@ -49,7 +49,7 @@ jobs:
               body = [
                 '## ✅ 合格！',
                 '',
-                `**${file}** の React コンポーネント（useState のカウンター更新）が正しく動きました。`,
+                `**${file}** の React コンポーネント（useState の天気チェンジ）が正しく動きました。`,
                 'お疲れ様でした！',
               ].join('\n');
             } else if (result === 'no_file') {
@@ -63,13 +63,14 @@ jobs:
               body = [
                 '## ❌ 不合格',
                 '',
-                `**${file}** のいいねカウンターが期待通りに動きませんでした。`,
+                `**${file}** の天気チェンジが期待通りに動きませんでした。`,
                 '',
                 '**確認ポイント**',
-                '- `LikeCounter` の `return null` を JSX に書き換えましたか？',
-                '- `const [count, setCount] = useState(0);` の行を消していませんか？',
-                '- `.like-btn` の `onClick` で `setCount(count + 1)`（または `setCount((c) => c + 1)`）を呼んでいますか？',
-                '- `.count-label` に `いいね: {count}` と表示していますか？（`${count}` ではなく `{count}`）',
+                '- `WeatherSwitcher` の `return null` を JSX に書き換えましたか？',
+                '- `const [weather, setWeather] = useState(\'sunny\');` の行を消していませんか？',
+                '- `.weather-btn` の `onClick` で、`nextWeather` を呼んでいますか？',
+                '- `.weather-label` に `いまの天気: {weather}` と表示していますか？（`${weather}` ではなく `{weather}`）',
+                '- ボタンを押すと `sunny -> cloudy -> rainy -> sunny` の順で切り替わりますか？',
                 '- `class` ではなく `className` と書いていますか？',
                 '',
                 'コードを修正して再度 push してください。',

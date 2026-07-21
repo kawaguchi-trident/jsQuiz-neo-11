@@ -14,15 +14,15 @@
       letter-spacing: 0.08em;
     }
 
-    .counter-card {
+    .weather-card {
       max-width: 360px;
       border: 1px solid #ccc;
       border-radius: 10px;
-      background: #fffdf7;
+      background: #f7fbff;
       padding: 14px 16px;
     }
 
-    .like-btn {
+    .weather-btn {
       border: 1px solid #999;
       border-radius: 8px;
       padding: 8px 14px;
@@ -31,7 +31,7 @@
       cursor: pointer;
     }
 
-    .count-label {
+    .weather-label {
       margin: 12px 0 0;
       font-size: 1.05rem;
       font-weight: bold;
@@ -39,8 +39,8 @@
   </style>
 </head>
 <body>
-  <h1>TRIDENT CAFE いいねカウンター</h1>
-  <p>ボタンを押すたびに、いいね数が 1 ずつ増えるようにします。</p>
+  <h1>TRIDENT てんきチェンジ</h1>
+  <p>ボタンを押すたびに、晴れ → くもり → 雨 → 晴れ の順で天気を切り替えます。</p>
 
   <div id="root"></div>
 
@@ -62,20 +62,31 @@
 
     // ===== ここから下があなたの課題です =====
 
-    /* やること：LikeCounter コンポーネントを完成させること。
-       useState で count を管理し、
-       1) .like-btn をクリックしたら count を +1
-       2) .count-label に「いいね: {count}」と表示
-       する JSX を return する。
+    /* やること：WeatherSwitcher コンポーネントを完成させること。
+      useState で weather を管理し、
+      1) .weather-btn をクリックしたら weather を sunny -> cloudy -> rainy -> sunny の順で更新
+      2) .weather-label に「いまの天気: {weather}」と表示
+      する JSX を return する。
 
-       ■ JSX のルール
-       - 変数の埋め込みは ${count} ではなく {count}
-       - class 属性は className と書く
-       - クリック処理は onClick に関数を渡す */
+      ■ JSX のルール
+      - 変数の埋め込みは ${weather} ではなく {weather}
+      - class 属性は className と書く
+      - クリック処理は onClick に関数を渡す */
 
-    function LikeCounter() {
-      const [count, setCount] = useState(0);
-      // ↓ ここを書き換える（課題）
+    function WeatherSwitcher() {
+      const [weather, setWeather] = useState('sunny');
+
+      const nextWeather = () => {
+        if (weather === 'sunny') {
+          setWeather('cloudy');
+        } else if (weather === 'cloudy') {
+          setWeather('rainy');
+        } else {
+          setWeather('sunny');
+        }
+      };
+
+      // ↓ ここのnullを書き換える（課題）
       return null;
     }
 
@@ -83,14 +94,14 @@
 
     // ===== ここから下は用意済みです（書き換えないこと）=====
     function App() {
-      return <LikeCounter />;
+      return <WeatherSwitcher />;
     }
 
     createRoot(document.querySelector('#root')).render(<App />);
 
     // ----- 自動判定用（書き換えないこと）-----
-    window.__quizReadCountText = () =>
-      document.querySelector('.count-label')?.textContent || '';
+    window.__quizReadWeatherText = () =>
+      document.querySelector('.weather-label')?.textContent || '';
   </script>
 </body>
 </html>

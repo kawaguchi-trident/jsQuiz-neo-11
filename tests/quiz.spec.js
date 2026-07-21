@@ -20,31 +20,33 @@ function normalize(text) {
 // CDN（Babel / esm.sh）の読み込みと React の描画を待つ
 async function gotoAndWaitRender(page) {
   await page.goto(resolveFileUrl());
-  await page.waitForSelector('.like-btn', { timeout: 30000 });
-  await page.waitForSelector('.count-label', { timeout: 30000 });
+  await page.waitForSelector('.weather-btn', { timeout: 30000 });
+  await page.waitForSelector('.weather-label', { timeout: 30000 });
 }
 
-test('初期表示でボタンとカウントが描画される', async ({ page }) => {
+test('初期表示でボタンと天気表示が描画される', async ({ page }) => {
   await gotoAndWaitRender(page);
-  await expect(page.locator('.like-btn')).toHaveCount(1);
-  await expect(page.locator('.count-label')).toHaveCount(1);
-  expect(normalize(await page.locator('.count-label').textContent())).toBe(
-    'いいね: 0',
+  await expect(page.locator('.weather-btn')).toHaveCount(1);
+  await expect(page.locator('.weather-label')).toHaveCount(1);
+  expect(normalize(await page.locator('.weather-label').textContent())).toBe(
+    'いまの天気: sunny',
   );
 });
 
-test('ボタンを3回押すと 0 -> 1 -> 2 -> 3 と増える', async ({ page }) => {
+test('ボタンを3回押すと sunny -> cloudy -> rainy -> sunny と切り替わる', async ({
+  page,
+}) => {
   await gotoAndWaitRender(page);
-  const count = page.locator('.count-label');
-  const button = page.locator('.like-btn');
+  const weather = page.locator('.weather-label');
+  const button = page.locator('.weather-btn');
 
-  expect(normalize(await count.textContent())).toBe('いいね: 0');
+  expect(normalize(await weather.textContent())).toBe('いまの天気: sunny');
   await button.click();
-  expect(normalize(await count.textContent())).toBe('いいね: 1');
+  expect(normalize(await weather.textContent())).toBe('いまの天気: cloudy');
   await button.click();
-  expect(normalize(await count.textContent())).toBe('いいね: 2');
+  expect(normalize(await weather.textContent())).toBe('いまの天気: rainy');
   await button.click();
-  expect(normalize(await count.textContent())).toBe('いいね: 3');
+  expect(normalize(await weather.textContent())).toBe('いまの天気: sunny');
 });
 
 test('useState を使って実装している', async ({ page }) => {
