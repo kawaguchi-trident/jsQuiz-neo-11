@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jsQuiz11 - React入門（useState）</title>
+  <style>
+    body {
+      padding: 0 16px;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      letter-spacing: 0.08em;
+    }
+
+    .counter-card {
+      max-width: 360px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fffdf7;
+      padding: 14px 16px;
+    }
+
+    .like-btn {
+      border: 1px solid #999;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 1rem;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .count-label {
+      margin: 12px 0 0;
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>TRIDENT CAFE いいねカウンター</h1>
+  <p>ボタンを押すたびに、いいね数が 1 ずつ増えるようにします。</p>
+
+  <div id="root"></div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19",
+        "react/jsx-runtime": "https://esm.sh/react@19/jsx-runtime",
+        "react-dom/client": "https://esm.sh/react-dom@19/client"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel" data-type="module" data-presets="react">
+    // ===== 用意済み：React 本体の読み込み（書き換えないこと）=====
+    import React, { useState } from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    // ===== ここから下があなたの課題です =====
+
+    /* やること：LikeCounter コンポーネントを完成させること。
+       useState で count を管理し、
+       1) .like-btn をクリックしたら count を +1
+       2) .count-label に「いいね: {count}」と表示
+       する JSX を return する。
+
+       ■ JSX のルール
+       - 変数の埋め込みは ${count} ではなく {count}
+       - class 属性は className と書く
+       - クリック処理は onClick に関数を渡す */
+
+    function LikeCounter() {
+      const [count, setCount] = useState(0);
+      // ↓ ここを書き換える（課題）
+      return null;
+    }
+
+    // ===== ここまでがあなたの課題です =====
+
+    // ===== ここから下は用意済みです（書き換えないこと）=====
+    function App() {
+      return <LikeCounter />;
+    }
+
+    createRoot(document.querySelector('#root')).render(<App />);
+
+    // ----- 自動判定用（書き換えないこと）-----
+    window.__quizReadCountText = () =>
+      document.querySelector('.count-label')?.textContent || '';
+  </script>
+</body>
+</html>
