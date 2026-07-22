@@ -89,22 +89,22 @@
       };
 
       // ↓ ここのnullを書き換える（課題）
-      return null;
+      return (
+        <div>
+          {/* 波括弧の中はjavascript */}
+          <button className="weather-btn" onClick={nextWeather}>
+            天気を変更
+          </button>
+          <div className="weather-label">
+            いまの天気: {weather}
+          </div>
+        </div>
+      );
     }
 
     // ===== ここまでがあなたの課題です =====
 
-    return (
-      <div>
-        {/* 波括弧の中はjavascript */}
-        <button className="weather-btn" onClick={nextWeather}>
-          天気を変更
-        </button>
-        <div className="weather-label">
-          いまの天気: {weather}
-        </div>
-      </div>
-    );
+
 
     // ===== ここから下は用意済みです（書き換えないこと）=====
     function App() {
