@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jsQuiz11 - React入門（useState）</title>
+  <style>
+    body {
+      padding: 0 16px;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      letter-spacing: 0.08em;
+    }
+
+    .weather-card {
+      max-width: 360px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f7fbff;
+      padding: 14px 16px;
+    }
+
+    .weather-btn {
+      border: 1px solid #999;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 1rem;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .weather-label {
+      margin: 12px 0 0;
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>TRIDENT てんきチェンジ</h1>
+  <p>ボタンを押すたびに、晴れ → くもり → 雨 → 晴れ の順で天気を切り替えます。</p>
+
+  <div id="root"></div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19",
+        "react/jsx-runtime": "https://esm.sh/react@19/jsx-runtime",
+        "react-dom/client": "https://esm.sh/react-dom@19/client"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel" data-type="module" data-presets="react">
+    // ===== 用意済み：React 本体の読み込み（書き換えないこと）=====
+    import React, { useState } from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    // ===== ここから下があなたの課題です =====
+
+    /* やること：WeatherSwitcher コンポーネントを完成させること。
+      useState で weather を管理し、
+      1) .weather-btn をクリックしたら weather を sunny -> cloudy -> rainy -> sunny の順で更新
+      2) .weather-label に「いまの天気: {weather}」と表示
+      する JSX を return する。
+
+      ■ JSX のルール
+      - 変数の埋め込みは ${weather} ではなく {weather}
+      - class 属性は className と書く
+      - クリック処理は onClick に関数を渡す */
+
+    function WeatherSwitcher() {
+      const [weather, setWeather] = useState('sunny');
+
+      const nextWeather = () => {
+        if (weather === 'sunny') {
+          setWeather('cloudy');
+        } else if (weather === 'cloudy') {
+          setWeather('rainy');
+        } else {
+          setWeather('sunny');
+        }
+      };
+
+      // ↓ ここのnullを書き換える（課題）
+      return (
+        <div className="weather-card">
+          <button className="weather-btn" onClick={nextWeather}>
+            天気を切り替える
+          </button>
+          <p className="weather-label">いまの天気: {weather}</p>
+        </div>
+      )
+    }
+
+    // ===== ここまでがあなたの課題です =====
+
+    // ===== ここから下は用意済みです（書き換えないこと）=====
+    function App() {
+      return <WeatherSwitcher />;
+    }
+
+    createRoot(document.querySelector('#root')).render(<App />);
+
+    // ----- 自動判定用（書き換えないこと）-----
+    window.__quizReadWeatherText = () =>
+      document.querySelector('.weather-label')?.textContent || '';
+  </script>
+</body>
+
+</html>
